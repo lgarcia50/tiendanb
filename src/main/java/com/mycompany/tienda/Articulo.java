@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package com.mycompany.tienda;
+import java.util.ArrayList;
+
 
 /**
  *
@@ -11,18 +13,23 @@ package com.mycompany.tienda;
  */
 public class Articulo {
 
+
 	private String codigo;
 	private String nombre;
 	private float precio;
 	private int stock;
+        private ArrayList<Opinion> opinion;
 	
-	public Articulo() {};
+	public Articulo() {
+        opinion=new ArrayList<Opinion>();
+        };
 	
 	public Articulo(String codigo,String nombre,float precio, int stock){
 		setCodigo(codigo);
 		setNombre(nombre);
 		setPrecio(precio);
 		setStock(stock);
+                opinion=new ArrayList<Opinion>();
 	}
 	
 	public String getCodigo() {
@@ -75,5 +82,25 @@ public class Articulo {
 				return false;
 		}
 	}
+        public void AddOpinion(Opinion opinion){
+            opinion.add(opinion);
+        }
+        public String showOpinions(){
+            StringBuilder sb= new StringBuilder();
+            for (Opinion o: opinion) {
+			sb.append("\n").append(o);
+		}
+            return sb.toString();
+        }
+       public void mediaOpinions(){
+           float media =0;
+           for (Opinion o: opinion) {
+               
+           if(o.getPuntuacion()==Puntuacion.mal){
+              
+           }
+       }
+
 }
 
+}
