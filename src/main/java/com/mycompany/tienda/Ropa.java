@@ -7,25 +7,33 @@ package com.mycompany.tienda;
 
 /**
  *
- * @author anaga
+ * @author lucia
  */
 public class Ropa  extends Articulo{
-    String color;
-    int talla;
+    private String color;
+    private TallaSML talla;
     public Ropa() { }
     
-    public Ropa(String color,int talla, String codigo, String nombre,float precio,int stock) {
+    public Ropa(String color,TallaSML talla, String codigo, String nombre,float precio,int stock) {
         super(codigo, nombre, precio, stock);
         this.color = color;
         this.talla = talla; 
     }
-
-    Ropa(String string, String falda, float f, int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+public String getColor() {
+    return color;
     }
+public void setColor(){
+    this.color=color;
+}
+public TallaSML getTalla(){
+    return talla;
+}
+public void setTalla(TallaSML tall){
+    this.talla=tall;
+}
   @Override
   public String toString() {
-      return + super.toString()+ "Color: " + color + "\nTalla: "
+    return super.toString() + "color:"+ getColor()+ "\nTalla:"+getTalla();
   }
     
 }
