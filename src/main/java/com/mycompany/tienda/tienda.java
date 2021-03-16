@@ -10,15 +10,20 @@ import java.util.Scanner;
 
 /**
  *
- * @author anaga
+ * @author lucia
  */
 public class tienda {
 
-	public static void main(String[] args) {
-		Scanner numeros = new Scanner(System.in);
+    /**
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        Scanner numeros = new Scanner(System.in);
 		Scanner cadenas = new Scanner(System.in);
+                usuario user= new usuario();
 		
-		int opcion = -1;
+		int option = -1;
 		
 		ArrayList<Articulo> catalogo = new ArrayList<Articulo>();
 		inicializaCatalogo(catalogo);
@@ -30,10 +35,11 @@ public class tienda {
 			System.out.println("1. Alta Articulo");
 			System.out.println("2. Comprar");
 			System.out.println("3. Confirmar compra");
+                        System.out.println("4. Crear usuario:");
 			System.out.println("0. Salir");
-			opcion = numeros.nextInt();
+			option = numeros.nextInt();
 			
-			switch(opcion) {
+			switch(option) {
 				case 1:
 					addArticuloCatalogo(catalogo, cadenas, numeros);
 					mostrarCatalogo(catalogo);
@@ -43,6 +49,7 @@ public class tienda {
 					break;
 				case 3:
 					break;
+                                case 4: crearUsuario(user, cadenas);
 				case 0:
 					System.out.println("Muchas gracias por su compra.");
 					break;
@@ -50,7 +57,7 @@ public class tienda {
 					System.out.println("Opcion incorrecta, lea atentamente.");
 					break;
 			}
-		}while(opcion != 0);
+		}while(option != 0);
 
 	}
 	
@@ -59,7 +66,11 @@ public class tienda {
 		c.add(new Articulo("0002", "Teclado", 10.00F, 100));
 		c.add(new Articulo("0003", "RJ45 2M", 4.50F, 50));
 		c.add(new Articulo("0004", "Raton", 20.00F, 15));
-                c.add(new Ropa("0005", "Falda",15.00F,10));
+                c.add(new Ropa("rojo",TallaSML.L,"0005", "Falda",15.00F,10));
+                c.add(new Electrodomestico("Hogar",ClaseE.A,"0006","lavadora",160.00F,5));
+                c.add(new Lavadora("Bosch",ClaseE.D,"0007","WAU24T44ES", 6,120, 190.00F, 4));
+           
+               
 	}
 
 	private static void addArticuloCatalogo(ArrayList<Articulo> c, Scanner sc, Scanner sn) {
@@ -216,5 +227,29 @@ private static Articulo buscarArticuloPorCodigo2(ArrayList<Articulo> c, String c
 		//		Mostramos mensaje de despedida y salimos del programa
 		//Si no se confirma: Mostramos mensaje de que puede seguir comprando
 	}
+        private static void crearUsuario(usuario us, Scanner sn){
+            String nombre,email,pass;
+            do{
+                System.out.println("Dame un nombre de usuario");
+                nombre=sn.nextLine();
+            }while(us.checkNombre(nombre));
+            us.setNombre(nombre);
+            do{
+                System.out.println("Dame un email: ");
+                email=sn.nextLine();
+            }while(us.CheckEmail(email)==false);
+            us.setEmail(email);
+            do{
+                System.out.println("Dame una contraseña: ");
+                pass=sn.nextLine();
+            }while(us.CheckPassword(pass)==false);
+            us.setPass(pass);
+            
+            System.out.println(us);
+        }
+        private static void DarOpinion(usuario us, ArrayList<Articulo> c, Scanner sc){
+            System.out.println("Dame tu opinion sobre el articulo:");
+        }
 }
+
 
